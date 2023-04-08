@@ -131,6 +131,10 @@ def main():
     left_player_sprite = Sprite(position={"x": canvas_width / 4 - left_player_image.get_width() / 5 / 2, "y": canvas_height / 2 -
                                 left_player_image.get_height() / 6 / 2 + 75}, image=left_player_image, frames={"max": 5, "current": 1}, layers={"max": 6, "current": 1})
 
+    right_player_image = pygame.image.load("./assets/right_shooter.png")
+    right_player_sprite = Sprite(position={"x": (canvas_width * 3) / 4 - right_player_image.get_width() / 5 / 2, "y": canvas_height / 2 -
+                                           right_player_image.get_height() / 6 / 2 + 75}, image=right_player_image, frames={"max": 5, "current": 1}, layers={"max": 6, "current": 1})
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -166,6 +170,7 @@ def main():
             platform_sprite.draw(screen)
 
         left_player_sprite.draw(screen)
+        right_player_sprite.draw(screen)
 
         filter_sprite.draw(screen)
 
