@@ -111,6 +111,26 @@ def main():
                                  "max": 2, "current": 0})
         left_platforms.append(platform_sprite)
 
+    right_platforms = []
+    for i in range(10):
+        platform_image = pygame.image.load("./assets/platform.png")
+        center = i % 3 == 2
+        top = i % 3 == 1
+        left = i < 4
+        mid = i < 7 and i > 3
+
+        x = ((canvas_width * 3) / 4 - platform_image.get_width() / 2 - platform_image.get_width()) if left else ((canvas_width * 3) /
+                                                                                                                 4 - platform_image.get_width() / 2 if mid else (canvas_width * 3) / 4 - platform_image.get_width() / 2 + platform_image.get_width())
+        y = (canvas_height / 2 - platform_image.get_height() / 16 - platform_image.get_height() / 2) if top else (canvas_height / 2 -
+                                                                                                                  platform_image.get_height() / 16 if center else canvas_height / 2 - platform_image.get_height() / 16 + platform_image.get_height() / 2)
+        platform_sprite = Sprite(position={"x": x, "y": y + 75}, image=platform_image, layers={
+                                 "max": 2, "current": 1})
+        right_platforms.append(platform_sprite)
+
+    left_player_image = pygame.image.load("./assets/left_shooter.png")
+    left_player_sprite = Sprite(position={"x": canvas_width / 4 - left_player_image.get_width() / 5 / 2, "y": canvas_height / 2 -
+                                left_player_image.get_height() / 6 / 2 + 75}, image=left_player_image, frames={"max": 5, "current": 1}, layers={"max": 6, "current": 1})
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -141,6 +161,11 @@ def main():
 
         for platform_sprite in left_platforms:
             platform_sprite.draw(screen)
+
+        for platform_sprite in right_platforms:
+            platform_sprite.draw(screen)
+
+        left_player_sprite.draw(screen)
 
         filter_sprite.draw(screen)
 
