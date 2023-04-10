@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "nodemon code.py"
+    "dev": "nodemon code.py"
   },
   "dependencies": {
     "nodemon": "^2.0.22"
